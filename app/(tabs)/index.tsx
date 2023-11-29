@@ -1,31 +1,62 @@
-import { StyleSheet } from 'react-native';
+import "react-native-get-random-values";
 
-import EditScreenInfo from '../../components/EditScreenInfo';
-import { Text, View } from '../../components/Themed';
-
+import { Text, View } from "../../components/Themed";
+import { generateMnemonic } from "bip39";
+import { Wallet, ethers, formatEther } from "ethers";
+import { useState } from "react";
 export default function TabOneScreen() {
+  const [balance, setBalance] = useState(0);
+  const mnemonics = generateMnemonic();
+
+  // const mnemonics =
+  //   "shrug cat ship just vanish buzz inhale quiz wine frequent expand vacant";
+  console.log(mnemonics);
+  const wallet = Wallet.fromPhrase(mnemonics);
+  console.log(wallet.address);
+  let headers = new Headers();
+  headers.set("Authorization", "Bearer cqt_rQ8f7H6mXJxbYcWqpdXFkG4FRjPW");
+
+  fetch(
+    `https://api.covalenthq.com/v1/eth-sepolia/address/${wallet.address}/balances_v2/?`,
+    { method: "GET", headers: headers }
+  )
+    .then((resp) => resp.json())
+    .then((data) => {
+      setBalance(Number(formatEther(data.data.items[0].balance)));
+      console.log(formatEther(data.data.items[0].balance));
+    });
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
+    <View
+      style={{
+        flex: 1,
+      }}
+    >
+      <View
+        style={{
+          marginVertical: 10,
+          marginHorizontal: 20,
+          display: "flex",
+          flexDirection: "column",
+          gap: 20,
+        }}
+      >
+        <Text style={{ fontWeight: "400", fontSize: 18 }}>
+          Mnemonic : {mnemonics}
+        </Text>
+        <Text style={{ fontWeight: "400", fontSize: 18 }}>
+          Public Key : {wallet.publicKey}
+        </Text>
+        <Text style={{ fontWeight: "400", fontSize: 18 }}>
+          Private Key : {wallet.privateKey}
+        </Text>
+        <Text style={{ fontWeight: "400", fontSize: 18 }}>
+          Address : {wallet.address}
+        </Text>
+        <Text style={{ fontWeight: "500", fontSize: 18 }}>
+          Balance : {balance}
+        </Text>
+      </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});
