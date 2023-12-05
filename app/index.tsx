@@ -11,6 +11,8 @@ export default function OnboardingPage() {
   async function getPrivateKey() {
     setLoading(true);
     const item = await Storage.getItem({ key: "walletActive" });
+    const test = await Storage.getItem({ key: "privateKEY" });
+    console.log(test);
     console.log(item);
     setLoading(false);
     return item;
@@ -27,8 +29,9 @@ export default function OnboardingPage() {
       </View>
     );
   } else {
-    if (active === true) {
-      return <Redirect href={"/(tabs)/"} />;
+    if (active == "true") {
+      console.log("redirecting TABS");
+      return <Redirect href={"/loginPage"} />;
     } else {
       return <Redirect href={"/(walletSetup)/walletSetup"} />;
     }

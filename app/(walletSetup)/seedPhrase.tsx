@@ -2,22 +2,33 @@ import { generateMnemonic } from "bip39";
 import { Wallet } from "ethers";
 import { useRouter } from "expo-router";
 import Storage from "expo-storage";
-import { useState } from "react";
-import { ActivityIndicator, Pressable, Text, View } from "react-native";
+import { useEffect, useState } from "react";
+import { ActivityIndicator, Alert, Pressable, Text, View } from "react-native";
 
 export default function seedPhrase() {
   const [displaySeedPhrase, setDisplaySeedPhrase] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
+  const [mnemonics, setMnemonics] = useState("");
   const router = useRouter();
-  const mnemonics = generateMnemonic();
+  useEffect(() => {
+    const res = generateMnemonic();
+    setMnemonics(res);
+    console.log(mnemonics);
+  }, []);
   const continueToWallet = async () => {
-    setShowLoader(true);
-    const wallet = Wallet.fromPhrase(mnemonics);
-    await Storage.setItem({ key: "privateKEY", value: wallet.privateKey });
-    await Storage.setItem({ key: "address", value: wallet.address });
-    await Storage.setItem({ key: "walletActive", value: true });
-    router.push("/(tabs)/");
-    setShowLoader(false);
+    if (mnemonics.length > 0) {
+      console.log("continue to wallet");
+      console.log(mnemonics);
+      setShowLoader(true);
+      const wallet = Wallet.fromPhrase(mnemonics);
+      await Storage.setItem({ key: "privateKEY", value: wallet.privateKey });
+      await Storage.setItem({ key: "address", value: wallet.address });
+      await Storage.setItem({ key: "walletActive", value: "true" });
+      router.push("/(tabs)/");
+      setShowLoader(false);
+    } else {
+      Alert.alert("Error", "Please try again");
+    }
   };
   return (
     <View

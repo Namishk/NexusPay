@@ -2,6 +2,7 @@ import { View, Text, Image, Button, Pressable, Alert } from "react-native";
 //@ts-ignore
 import { Storage } from "expo-storage";
 import { Link, useRouter } from "expo-router";
+import { ethers } from "ethers";
 export default function WalletSetup() {
   const router = useRouter();
   return (

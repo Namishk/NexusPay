@@ -13,7 +13,9 @@ export default function ImportSeedPhrase() {
     const wallet = Wallet.fromPhrase(seedPhrase);
     await Storage.setItem({ key: "privateKEY", value: wallet.privateKey });
     await Storage.setItem({ key: "address", value: wallet.address });
-    Storage.setItem({ key: "password", value: password });
+    await Storage.setItem({ key: "password", value: password });
+    await Storage.setItem({ key: "walletActive", value: true });
+
     router.push("/(tabs)/");
   };
   return (
@@ -107,7 +109,9 @@ export default function ImportSeedPhrase() {
           ) {
             if (password !== confirmPassword) {
               Alert.alert("Passwords do not match");
-            } else router.push("/(walletSetup)/seedPhrase");
+            } else if (password.length < 8) {
+              Alert.alert("Password must be at least 8 characters long");
+            } else handelSubmit();
           } else Alert.alert("Invalid Seed Phrase");
         }}
         style={{

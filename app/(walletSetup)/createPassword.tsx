@@ -77,6 +77,8 @@ export default function CreatePassword() {
         onPress={() => {
           if (password !== confirmPassword) {
             Alert.alert("Passwords do not match");
+          } else if (password.length < 8) {
+            Alert.alert("Password must be at least 8 characters long");
           } else {
             Storage.setItem({ key: "password", value: password });
             router.push("/(walletSetup)/seedPhrase");

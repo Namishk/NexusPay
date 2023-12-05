@@ -62,6 +62,10 @@ function RootLayoutNav() {
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: "modal" }} />
         <Stack.Screen name="loginPage" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="paymentReciver/[adress]"
+          options={{ headerShown: false }}
+        />
       </Stack>
     </ThemeProvider>
   );
