@@ -13,7 +13,7 @@ export default function WalletSetup() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "flex-end",
-        paddingBottom: 100,
+        paddingBottom: 20,
         gap: 20,
       }}
     >

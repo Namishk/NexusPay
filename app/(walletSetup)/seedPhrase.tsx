@@ -77,13 +77,14 @@ export default function seedPhrase() {
             display: "flex",
             flexDirection: "row",
             flexWrap: "wrap",
-            width: "90%",
-            gap: 15,
-            padding: 20,
+            width: "95%",
+            gap: 10,
+            padding: 10,
             backgroundColor: "#D7E4E3",
             borderRadius: 10,
-            height: 300,
-            minWidth: "90%",
+            maxHeight: 300,
+            height: !displaySeedPhrase ? 300 : "auto",
+            minWidth: "95%",
           }}
         >
           {displaySeedPhrase ? (
@@ -100,7 +101,7 @@ export default function seedPhrase() {
                   borderRadius: 10,
                 }}
               >
-                <Text style={{ fontSize: 18, fontWeight: "400" }}>
+                <Text style={{ fontSize: 16, fontWeight: "400" }}>
                   {index + 1}. {word}
                 </Text>
               </View>
