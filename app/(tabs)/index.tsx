@@ -3,16 +3,23 @@ import "react-native-get-random-values";
 import { Text, View } from "../../components/Themed";
 import { generateMnemonic } from "bip39";
 import { Wallet, ethers, formatEther } from "ethers";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Storage from "expo-storage";
 export default function TabOneScreen() {
   const [balance, setBalance] = useState(0);
+  const [wallet, setWallet] = useState(null);
   const mnemonics = generateMnemonic();
 
   // const mnemonics =
   //   "shrug cat ship just vanish buzz inhale quiz wine frequent expand vacant";
-  console.log(mnemonics);
-  const wallet = Wallet.fromPhrase(mnemonics);
-  console.log(wallet.address);
+  useEffect(() => {
+    Storage.getItem({ key: "privateKEY" }).then((res) => {
+      const wallet = new ethers.Wallet(res);
+      setWallet(wallet);
+    });
+  }, []);
+  // const wallet = Wallet.fromPhrase(mnemonics);
+  // console.log(wallet.address);
   let headers = new Headers();
   headers.set("Authorization", "Bearer cqt_rQ8f7H6mXJxbYcWqpdXFkG4FRjPW");
 
