@@ -45,7 +45,7 @@ export default function WalletSetup() {
         onPress={() => router.push("/(walletSetup)/importSeedPhrase")}
         style={{
           paddingVertical: 20,
-          backgroundColor: "#D7E4E3",
+          backgroundColor: "#85A7C3",
           minWidth: "90%",
           borderRadius: 10,
         }}
@@ -74,7 +74,7 @@ export default function WalletSetup() {
             textAlign: "center",
             fontWeight: "bold",
             fontSize: 16,
-            color: "#F5FA80",
+            color: "#FFFFFF",
           }}
         >
           Create a New Wallet

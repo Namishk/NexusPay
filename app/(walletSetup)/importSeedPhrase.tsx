@@ -40,7 +40,7 @@ export default function ImportSeedPhrase() {
       >
         Import From Seed
       </Text>
-      {/* <Text
+      <Text
         style={{
           fontSize: 16,
           width: "90%",
@@ -48,8 +48,8 @@ export default function ImportSeedPhrase() {
           color: "#767E93",
         }}
       >
-        This password will unlock your wallet only on this device
-      </Text> */}
+        Import an existing wallet using your 12 word seed phrase.
+      </Text>
 
       <TextInput
         placeholder="Seed Phrase"
@@ -59,11 +59,11 @@ export default function ImportSeedPhrase() {
         style={{
           width: "90%",
           height: 50,
-          backgroundColor: "#D7E4E3",
+          backgroundColor: "#B3CDDD",
           borderRadius: 10,
           padding: 10,
           fontSize: 16,
-          fontWeight: "300",
+          fontWeight: "500",
           color: "#767E93",
         }}
       />
@@ -76,11 +76,11 @@ export default function ImportSeedPhrase() {
         style={{
           width: "90%",
           height: 50,
-          backgroundColor: "#D7E4E3",
+          backgroundColor: "#B3CDDD",
           borderRadius: 10,
           padding: 10,
           fontSize: 16,
-          fontWeight: "300",
+          fontWeight: "500",
           color: "#767E93",
         }}
       />
@@ -92,11 +92,11 @@ export default function ImportSeedPhrase() {
         style={{
           width: "90%",
           height: 50,
-          backgroundColor: "#D7E4E3",
+          backgroundColor: "#B3CDDD",
           borderRadius: 10,
           padding: 10,
           fontSize: 16,
-          fontWeight: "300",
+          fontWeight: "500",
           color: "#767E93",
         }}
       />
@@ -126,7 +126,7 @@ export default function ImportSeedPhrase() {
             textAlign: "center",
             fontWeight: "bold",
             fontSize: 16,
-            color: "#F5FA80",
+            color: "#FFFFFF",
           }}
         >
           Continue Import

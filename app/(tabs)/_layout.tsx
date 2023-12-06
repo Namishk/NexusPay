@@ -1,7 +1,7 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Link, Tabs } from "expo-router";
 import { Pressable, useColorScheme } from "react-native";
-
+import { MaterialIcons } from "@expo/vector-icons";
 import Colors from "../../constants/Colors";
 
 /**
@@ -20,7 +20,10 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+        tabBarActiveTintColor: "#336C9B",
+        headerStyle: {
+          backgroundColor: "#B3CDDD",
+        },
       }}
     >
       <Tabs.Screen
@@ -28,7 +31,7 @@ export default function TabLayout() {
         options={{
           title: "Home",
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
-          headerShown: false,
+          // headerShown: false,
         }}
       />
       <Tabs.Screen
@@ -36,16 +39,29 @@ export default function TabLayout() {
         options={{
           title: "Make a Payment",
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="credit-card" color={color} />
+            <MaterialIcons
+              name="payments"
+              size={28}
+              color={color}
+              style={{ marginBottom: -3 }}
+            />
           ),
         }}
       />
       <Tabs.Screen
         name="recieve"
         options={{
-          title: "recieve",
+          title: "Recieve Payment",
           tabBarIcon: ({ color }) => <TabBarIcon name="qrcode" color={color} />,
-          headerShown: false,
+          // headerShown: false,
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: "Profile",
+          tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
+          // headerShown: false,
         }}
       />
     </Tabs>

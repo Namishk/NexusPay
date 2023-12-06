@@ -38,7 +38,7 @@ export default function seedPhrase() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "flex-start",
-        paddingTop: 100,
+        paddingTop: 50,
         gap: 20,
       }}
     >
@@ -80,7 +80,7 @@ export default function seedPhrase() {
             width: "95%",
             gap: 10,
             padding: 10,
-            backgroundColor: "#D7E4E3",
+            backgroundColor: "#85A7C3",
             borderRadius: 10,
             maxHeight: 300,
             height: !displaySeedPhrase ? 300 : "auto",
@@ -138,14 +138,14 @@ export default function seedPhrase() {
               textAlign: "center",
               fontWeight: "bold",
               fontSize: 16,
-              color: "#F5FA80",
+              color: "#FFFFFF",
             }}
           >
             {showLoader ? (
               <ActivityIndicator
                 animating={showLoader}
                 size={"small"}
-                color={"#F5FA80"}
+                color={"#FFFFFF"}
               />
             ) : (
               "Continue"
@@ -167,7 +167,7 @@ export default function seedPhrase() {
               textAlign: "center",
               fontWeight: "bold",
               fontSize: 16,
-              color: "#F5FA80",
+              color: "#FFFFFF",
             }}
           >
             Reveal seed phrase

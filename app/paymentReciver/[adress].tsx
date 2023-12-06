@@ -86,7 +86,7 @@ export default function Payment() {
         style={{
           width: "90%",
           height: 50,
-          backgroundColor: "#D7E4E3",
+          backgroundColor: "#B3CDDD",
           borderRadius: 10,
           padding: 10,
           fontSize: 16,
@@ -99,7 +99,7 @@ export default function Payment() {
         style={({ pressed }) => [
           {
             paddingVertical: 20,
-            backgroundColor: pressed ? "#818181" : "#000000",
+            backgroundColor: pressed ? "#FFFFFF" : "#000000",
             minWidth: "90%",
             borderRadius: 10,
           },
@@ -110,7 +110,7 @@ export default function Payment() {
             textAlign: "center",
             fontWeight: "bold",
             fontSize: 16,
-            color: "#F5FA80",
+            color: "#FFFFFF",
           }}
         >
           {
@@ -132,13 +132,13 @@ export default function Payment() {
         style={({ pressed }) => [
           {
             paddingVertical: 20,
-            backgroundColor: pressed ? "#F5FA80" : "#D7E4E3",
+            backgroundColor: pressed ? "#FFFFFF" : "#B3CDDD",
             minWidth: "90%",
             borderRadius: 10,
             shadowColor: "#171717",
             shadowOffset: { width: -4, height: -4 },
             shadowOpacity: 1,
-            shadowRadius: 0,
+            shadowRadius: 4,
           },
         ]}
       >

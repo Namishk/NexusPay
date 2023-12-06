@@ -56,7 +56,14 @@ function RootLayoutNav() {
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack initialRouteName="index">
+      <Stack
+        initialRouteName="index"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: "#B3CDDD",
+          },
+        }}
+      >
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="(walletSetup)" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
@@ -64,7 +71,11 @@ function RootLayoutNav() {
         <Stack.Screen name="loginPage" options={{ headerShown: false }} />
         <Stack.Screen
           name="paymentReciver/[adress]"
-          options={{ headerShown: false }}
+          options={{
+            headerShown: true,
+            title: "Make a Payment",
+            headerBackVisible: false,
+          }}
         />
       </Stack>
     </ThemeProvider>

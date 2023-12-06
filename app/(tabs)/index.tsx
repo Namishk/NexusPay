@@ -1,5 +1,4 @@
 import "react-native-get-random-values";
-
 import { Text, View } from "../../components/Themed";
 import { generateMnemonic } from "bip39";
 import { Wallet, ethers, formatEther } from "ethers";
@@ -12,6 +11,7 @@ import {
   ScrollView,
 } from "react-native";
 import { router } from "expo-router";
+import { FontAwesome } from "@expo/vector-icons";
 export default function TabOneScreen() {
   const [balance, setBalance] = useState(0);
   const [wallet, setWallet] = useState();
@@ -56,8 +56,6 @@ export default function TabOneScreen() {
         });
     });
   }, [reloadBalance]);
-  // const wallet = Wallet.fromPhrase(mnemonics);
-  // console.log(wallet.address);
 
   return (
     <View
@@ -67,7 +65,7 @@ export default function TabOneScreen() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "flex-start",
-        paddingTop: 100,
+        paddingTop: 10,
         gap: 20,
         backgroundColor: "#F8F8F9",
       }}
@@ -79,6 +77,8 @@ export default function TabOneScreen() {
             flexDirection: "row",
             backgroundColor: "#F8F8F9",
             justifyContent: "space-around",
+            alignItems: "center",
+            gap: 0,
           }}
         >
           {loading ? (
@@ -89,13 +89,12 @@ export default function TabOneScreen() {
           <Pressable
             onPress={() => setReloadBalance(!reloadBalance)}
             style={{
-              backgroundColor: "#F5FA80",
+              // backgroundColor: "#F5FA80",
               padding: 10,
               borderRadius: 10,
-              marginVertical: 20,
             }}
           >
-            <Text style={{ textAlign: "center" }}>Refresh</Text>
+            <FontAwesome name="refresh" size={20} color="black" />
           </Pressable>
         </View>
         <View
@@ -110,7 +109,7 @@ export default function TabOneScreen() {
           <Pressable
             onPress={() => router.push("/(tabs)/payment")}
             style={{
-              backgroundColor: "#D7E4E3",
+              backgroundColor: "#B3CDDD",
               paddingHorizontal: 20,
               paddingVertical: 10,
               borderRadius: 10,
@@ -121,7 +120,7 @@ export default function TabOneScreen() {
           <Pressable
             onPress={() => router.push("/(tabs)/recieve")}
             style={{
-              backgroundColor: "#D7E4E3",
+              backgroundColor: "#B3CDDD",
               paddingHorizontal: 20,
               paddingVertical: 10,
               borderRadius: 10,
