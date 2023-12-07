@@ -1,4 +1,12 @@
-import { View, Text, Image, Button, Pressable, Alert } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  Button,
+  TouchableOpacity,
+  Alert,
+  TouchableHighlight,
+} from "react-native";
 //@ts-ignore
 import { Storage } from "expo-storage";
 import { Link, useRouter } from "expo-router";
@@ -41,7 +49,8 @@ export default function WalletSetup() {
           Import an existing wallet or create a new one
         </Text>
       </View>
-      <Pressable
+      <TouchableHighlight
+        activeOpacity={0.1}
         onPress={() => router.push("/(walletSetup)/importSeedPhrase")}
         style={{
           paddingVertical: 20,
@@ -59,8 +68,8 @@ export default function WalletSetup() {
         >
           Import Using Seed Phrase
         </Text>
-      </Pressable>
-      <Pressable
+      </TouchableHighlight>
+      <TouchableOpacity
         onPress={() => router.push("/(walletSetup)/createPassword")}
         style={{
           paddingVertical: 20,
@@ -79,7 +88,7 @@ export default function WalletSetup() {
         >
           Create a New Wallet
         </Text>
-      </Pressable>
+      </TouchableOpacity>
     </View>
   );
 }

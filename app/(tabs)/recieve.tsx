@@ -1,6 +1,6 @@
 import Storage from "expo-storage";
 import { useEffect, useState } from "react";
-import { Pressable, Text, View } from "react-native";
+import { TouchableOpacity, Text, View } from "react-native";
 import QRCode from "react-native-qrcode-svg";
 import * as Clipboard from "expo-clipboard";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -67,7 +67,7 @@ export default function RecievePayment() {
           >
             Requesting payment for
           </Text>
-          <Pressable
+          <TouchableOpacity
             style={{ display: "flex", flexDirection: "row", gap: 4 }}
             onPress={() => copyToClipboard({ item: adress })}
           >
@@ -85,7 +85,7 @@ export default function RecievePayment() {
             >
               {adress}
             </Text>
-          </Pressable>
+          </TouchableOpacity>
         </View>
         <QRCode
           value={adress}

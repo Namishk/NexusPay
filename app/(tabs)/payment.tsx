@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, StyleSheet, Button, Alert, Pressable } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Button,
+  Alert,
+  TouchableOpacity,
+} from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { getAddress } from "ethers";
 import { Redirect, useRouter } from "expo-router";
@@ -59,7 +66,7 @@ export default function Payment() {
         style={StyleSheet.absoluteFillObject}
       />
       {scanned && (
-        <Pressable
+        <TouchableOpacity
           onPress={() => setScanned(false)}
           style={{
             backgroundColor: "#F5FA80",
@@ -69,7 +76,7 @@ export default function Payment() {
           }}
         >
           <Text>Tap to Scan Again</Text>
-        </Pressable>
+        </TouchableOpacity>
       )}
     </View>
   );

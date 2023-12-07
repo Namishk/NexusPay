@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Storage from "expo-storage";
 import {
   ActivityIndicator,
-  Pressable,
+  TouchableOpacity,
   SafeAreaView,
   ScrollView,
 } from "react-native";
@@ -82,11 +82,11 @@ export default function TabOneScreen() {
           }}
         >
           {loading ? (
-            <ActivityIndicator />
+            <ActivityIndicator color={"#336C9B"} />
           ) : (
             <Text style={{ fontSize: 48 }}>{balance} ETH</Text>
           )}
-          <Pressable
+          <TouchableOpacity
             onPress={() => setReloadBalance(!reloadBalance)}
             style={{
               // backgroundColor: "#F5FA80",
@@ -95,7 +95,7 @@ export default function TabOneScreen() {
             }}
           >
             <FontAwesome name="refresh" size={20} color="black" />
-          </Pressable>
+          </TouchableOpacity>
         </View>
         <View
           style={{
@@ -106,7 +106,7 @@ export default function TabOneScreen() {
             backgroundColor: "#F8F8F9",
           }}
         >
-          <Pressable
+          <TouchableOpacity
             onPress={() => router.push("/(tabs)/payment")}
             style={{
               backgroundColor: "#B3CDDD",
@@ -116,8 +116,8 @@ export default function TabOneScreen() {
             }}
           >
             <Text style={{ fontSize: 24, fontWeight: "600" }}>Send</Text>
-          </Pressable>
-          <Pressable
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={() => router.push("/(tabs)/recieve")}
             style={{
               backgroundColor: "#B3CDDD",
@@ -127,7 +127,7 @@ export default function TabOneScreen() {
             }}
           >
             <Text style={{ fontSize: 24, fontWeight: "600" }}>Recieve</Text>
-          </Pressable>
+          </TouchableOpacity>
         </View>
         <Text
           style={{
@@ -151,6 +151,7 @@ export default function TabOneScreen() {
         >
           {loading && (
             <ActivityIndicator
+              color={"#336C9B"}
               animating={loading}
               size={"large"}
               color={"#F5FA80"}

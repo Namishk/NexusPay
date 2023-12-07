@@ -25,7 +25,7 @@ export default function OnboardingPage() {
   if (loading) {
     return (
       <View>
-        <ActivityIndicator />
+        <ActivityIndicator color={"#336C9B"} />
       </View>
     );
   } else {

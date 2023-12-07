@@ -5,7 +5,7 @@ import { useState } from "react";
 import {
   ActivityIndicator,
   Alert,
-  Pressable,
+  TouchableOpacity,
   Text,
   TextInput,
   View,
@@ -94,16 +94,14 @@ export default function Payment() {
           marginVertical: 20,
         }}
       />
-      <Pressable
+      <TouchableOpacity
         onPress={() => handelPay()}
-        style={({ pressed }) => [
-          {
-            paddingVertical: 20,
-            backgroundColor: pressed ? "#FFFFFF" : "#000000",
-            minWidth: "90%",
-            borderRadius: 10,
-          },
-        ]}
+        style={{
+          paddingVertical: 20,
+          backgroundColor: "#000000",
+          minWidth: "90%",
+          borderRadius: 10,
+        }}
       >
         <Text
           style={{
@@ -117,6 +115,7 @@ export default function Payment() {
             //@ts-ignore
             loading ? (
               <ActivityIndicator
+                color={"#336C9B"}
                 animating={loading}
                 size={"small"}
                 color={"#F5FA80"}
@@ -126,21 +125,19 @@ export default function Payment() {
             )
           }
         </Text>
-      </Pressable>
-      <Pressable
+      </TouchableOpacity>
+      <TouchableOpacity
         onPress={() => router.replace("/(tabs)/")}
-        style={({ pressed }) => [
-          {
-            paddingVertical: 20,
-            backgroundColor: pressed ? "#FFFFFF" : "#B3CDDD",
-            minWidth: "90%",
-            borderRadius: 10,
-            shadowColor: "#171717",
-            shadowOffset: { width: -4, height: -4 },
-            shadowOpacity: 1,
-            shadowRadius: 4,
-          },
-        ]}
+        style={{
+          paddingVertical: 20,
+          backgroundColor: "#B3CDDD",
+          minWidth: "90%",
+          borderRadius: 10,
+          shadowColor: "#171717",
+          shadowOffset: { width: -4, height: -4 },
+          shadowOpacity: 1,
+          shadowRadius: 4,
+        }}
       >
         <Text
           style={{
@@ -152,7 +149,7 @@ export default function Payment() {
         >
           Cancel
         </Text>
-      </Pressable>
+      </TouchableOpacity>
     </View>
   );
 }

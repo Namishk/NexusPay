@@ -4,7 +4,7 @@ import { useState } from "react";
 import {
   Alert,
   Image,
-  Pressable,
+  TouchableOpacity,
   ScrollView,
   Text,
   TextInput,
@@ -67,7 +67,7 @@ export default function loginPage() {
             color: "#767E93",
           }}
         />
-        <Pressable
+        <TouchableOpacity
           //   onPress={() => {
           //     if (password !== confirmPassword) {
           //       Alert.alert("Passwords do not match");
@@ -80,6 +80,8 @@ export default function loginPage() {
             Storage.getItem({ key: "password" }).then((res) => {
               if (res === password) {
                 router.push("/(tabs)/");
+              } else {
+                Alert.alert("Incorrect Password");
               }
             });
           }}
@@ -100,7 +102,7 @@ export default function loginPage() {
           >
             LogIn
           </Text>
-        </Pressable>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );

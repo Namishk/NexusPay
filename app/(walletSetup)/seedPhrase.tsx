@@ -3,7 +3,13 @@ import { Wallet } from "ethers";
 import { useRouter } from "expo-router";
 import Storage from "expo-storage";
 import { useEffect, useState } from "react";
-import { ActivityIndicator, Alert, Pressable, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  Alert,
+  TouchableOpacity,
+  Text,
+  View,
+} from "react-native";
 
 export default function seedPhrase() {
   const [displaySeedPhrase, setDisplaySeedPhrase] = useState(false);
@@ -124,7 +130,7 @@ export default function seedPhrase() {
         </View>
       </View>
       {displaySeedPhrase ? (
-        <Pressable
+        <TouchableOpacity
           onPress={continueToWallet}
           style={{
             paddingVertical: 20,
@@ -143,6 +149,7 @@ export default function seedPhrase() {
           >
             {showLoader ? (
               <ActivityIndicator
+                color={"#336C9B"}
                 animating={showLoader}
                 size={"small"}
                 color={"#FFFFFF"}
@@ -151,9 +158,9 @@ export default function seedPhrase() {
               "Continue"
             )}
           </Text>
-        </Pressable>
+        </TouchableOpacity>
       ) : (
-        <Pressable
+        <TouchableOpacity
           onPress={() => setDisplaySeedPhrase(!displaySeedPhrase)}
           style={{
             paddingVertical: 20,
@@ -172,7 +179,7 @@ export default function seedPhrase() {
           >
             Reveal seed phrase
           </Text>
-        </Pressable>
+        </TouchableOpacity>
       )}
     </View>
   );

@@ -2,20 +2,29 @@ import { Wallet } from "ethers";
 import { useRouter } from "expo-router";
 import Storage from "expo-storage";
 import { useState } from "react";
-import { View, Text, Image, Pressable, Alert, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  Alert,
+  TextInput,
+  ActivityIndicator,
+} from "react-native";
 
 export default function ImportSeedPhrase() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [seedPhrase, setSeedPhrase] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const handelSubmit = async () => {
-    const wallet = Wallet.fromPhrase(seedPhrase);
+    const wallet = Wallet.fromPhrase(seedPhrase.trim());
     await Storage.setItem({ key: "privateKEY", value: wallet.privateKey });
     await Storage.setItem({ key: "address", value: wallet.address });
     await Storage.setItem({ key: "password", value: password });
-    await Storage.setItem({ key: "walletActive", value: true });
-
+    await Storage.setItem({ key: "walletActive", value: "true" });
+    setLoading(false);
     router.push("/(tabs)/");
   };
   return (
@@ -48,7 +57,7 @@ export default function ImportSeedPhrase() {
           color: "#767E93",
         }}
       >
-        Import an existing wallet using your 12 word seed phrase.
+        Import an existing wallet using your 12 or 24 word seed phrase.
       </Text>
 
       <TextInput
@@ -101,18 +110,25 @@ export default function ImportSeedPhrase() {
         }}
       />
 
-      <Pressable
+      <TouchableOpacity
         onPress={() => {
+          setLoading(true);
+
           if (
             seedPhrase.split(" ").length == 12 ||
             seedPhrase.split(" ").length == 24
           ) {
             if (password !== confirmPassword) {
               Alert.alert("Passwords do not match");
+              setLoading(false);
             } else if (password.length < 8) {
               Alert.alert("Password must be at least 8 characters long");
+              setLoading(false);
             } else handelSubmit();
-          } else Alert.alert("Invalid Seed Phrase");
+          } else {
+            Alert.alert("Invalid Seed Phrase");
+            setLoading(false);
+          }
         }}
         style={{
           paddingVertical: 20,
@@ -129,9 +145,17 @@ export default function ImportSeedPhrase() {
             color: "#FFFFFF",
           }}
         >
-          Continue Import
+          {loading ? (
+            <ActivityIndicator
+              color={"#336C9B"}
+              color={"white"}
+              animating={loading}
+            />
+          ) : (
+            "Continue Import"
+          )}
         </Text>
-      </Pressable>
+      </TouchableOpacity>
     </View>
   );
 }

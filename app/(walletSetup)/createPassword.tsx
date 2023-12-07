@@ -1,21 +1,28 @@
 import { useRouter } from "expo-router";
 import Storage from "expo-storage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   View,
   Text,
   Image,
-  Pressable,
+  TouchableOpacity,
   Alert,
   TextInput,
   ScrollView,
+  ActivityIndicator,
 } from "react-native";
 
 export default function CreatePassword() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [active, setActive] = useState("false");
   const router = useRouter();
-  // router.canGoBack();
+  useEffect(() => {
+    Storage.getItem({ key: "walletActive" }).then((res) => {
+      setActive(res);
+    });
+  });
   return (
     <ScrollView>
       <View
@@ -91,15 +98,25 @@ export default function CreatePassword() {
           }}
         />
 
-        <Pressable
+        <TouchableOpacity
           onPress={() => {
+            setLoading(true);
+
             if (password !== confirmPassword) {
               Alert.alert("Passwords do not match");
             } else if (password.length < 8) {
               Alert.alert("Password must be at least 8 characters long");
             } else {
-              Storage.setItem({ key: "password", value: password });
-              router.push("/(walletSetup)/seedPhrase");
+              setLoading(true);
+              Storage.setItem({ key: "password", value: password }).then(() =>
+                setLoading(false)
+              );
+              if (active == "false") {
+                router.push("/(walletSetup)/seedPhrase");
+              } else {
+                router.push("/(tabs)/");
+              }
+              setLoading(false);
             }
           }}
           style={{
@@ -117,9 +134,13 @@ export default function CreatePassword() {
               color: "#FFFFFF",
             }}
           >
-            Create Password
+            {loading ? (
+              <ActivityIndicator color={"#336C9B"} color={"white"} />
+            ) : (
+              "Create Password"
+            )}
           </Text>
-        </Pressable>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );

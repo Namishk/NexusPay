@@ -1,4 +1,10 @@
-import { Linking, PlatformColor, Pressable, Text, View } from "react-native";
+import {
+  Linking,
+  PlatformColor,
+  TouchableOpacity,
+  Text,
+  View,
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 export default function Profile() {
@@ -16,7 +22,7 @@ export default function Profile() {
         backgroundColor: "#F8F8F9",
       }}
     >
-      <Pressable
+      <TouchableOpacity
         style={{
           paddingVertical: 20,
           backgroundColor: "#B3CDDD",
@@ -43,10 +49,12 @@ export default function Profile() {
         >
           Change Password
         </Text>
-      </Pressable>
-      <Pressable onPress={() => Linking.openURL("https://github.com/namishk")}>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => Linking.openURL("https://github.com/namishk")}
+      >
         <Text>Made with ❤️ by @NamishK</Text>
-      </Pressable>
+      </TouchableOpacity>
     </View>
   );
 }
