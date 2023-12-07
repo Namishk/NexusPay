@@ -101,6 +101,7 @@ export default function CreatePassword() {
         <TouchableOpacity
           onPress={() => {
             setLoading(true);
+            console.log("redirecting4");
 
             if (password !== confirmPassword) {
               Alert.alert("Passwords do not match");
@@ -108,14 +109,22 @@ export default function CreatePassword() {
               Alert.alert("Password must be at least 8 characters long");
             } else {
               setLoading(true);
-              Storage.setItem({ key: "password", value: password }).then(() =>
-                setLoading(false)
-              );
+              Storage.setItem({ key: "password", value: password }).then(() => {
+                console.log("redirecting3");
+                setLoading(false);
+              });
               if (active == "false") {
+                console.log("redirecting2");
+
                 router.push("/(walletSetup)/seedPhrase");
-              } else {
+              } else if (active == "true") {
+                console.log("redirecting1");
+
                 router.push("/(tabs)/");
               }
+              console.log("redirecting");
+              router.push("/(walletSetup)/seedPhrase");
+
               setLoading(false);
             }
           }}
