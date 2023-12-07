@@ -38,6 +38,7 @@ export default function Payment() {
           console.log(res.hash);
           Alert.alert("Payment sent", res.hash);
           setLoading(false);
+          router.replace("/(tabs)/");
         })
         .catch((err) => {
           console.log(err);
